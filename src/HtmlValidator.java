@@ -11,11 +11,32 @@ public class HtmlValidator {
 	
 	public static Stack<HtmlTag> isValidHtml(Queue<HtmlTag> tags) {
 
-		/* IMPLEMENT THIS METHOD! */
-		
-		return null; // this line is here only so this code will compile if you don't modify it
+		Stack<HtmlTag> stack = new Stack<>();
+		System.out.println("Initial Tag Elements " + tags);
+
+		for (HtmlTag tag : tags){
+
+			if (tag.isOpenTag()){
+				stack.push(tag);
+			}else if (!tag.isSelfClosing()){
+				if (!stack.empty()){
+					if (tag.matches(stack.peek())){
+						stack.pop();
+					}
+				}else {
+					stack.push(tag);
+				}
+			}
+		}
+
+		System.out.println("resulting stack: " + stack);
+		return stack;
 	}
-	
+
+	private static Stack<HtmlTag> other(Queue<HtmlTag> tags){
+
+		return null;
+	}
 
 }
 
