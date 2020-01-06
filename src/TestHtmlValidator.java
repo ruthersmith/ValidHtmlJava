@@ -41,8 +41,16 @@ public class TestHtmlValidator {
         assert nonValids.empty();
     }
 
+    @Test
     public void test6() throws IOException {
         Queue<HtmlTag> tags = HtmlReader.getTagsFromHtmlFile("test6.html");
+        Stack nonValids  = HtmlValidator.isValidHtml(tags);
+        assert !nonValids.empty();
+    }
+
+    @Test
+    public void test7() throws IOException {
+        Queue<HtmlTag> tags = HtmlReader.getTagsFromHtmlFile("test7.html");
         Stack nonValids  = HtmlValidator.isValidHtml(tags);
         assert !nonValids.empty();
     }
